@@ -1,0 +1,74 @@
+<mat-card class="formGrid">
+  <mat-card-title>{{title}}</mat-card-title>
+  <form [formGroup]="newPerson" (ngSubmit)="submit()" class="form-control" required>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="name?.hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="name?.hasError('minlength') && !name?.hasError('required')">
+        Name must have <strong>at least 3 characters</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Surename</mat-label>
+      <input matInput formControlName="surename">
+      <mat-error *ngIf="surename?.hasError('required')">
+        Surename is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="surename?.hasError('minlength') && !surename?.hasError('required')">
+        Surename must have <strong>at least 3 characters</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Age</mat-label>
+      <input matInput type="number" formControlName="date">
+      <mat-error *ngIf="age?.hasError('required')">
+        Age <strong>as a number</strong> is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="(age?.hasError('min') || age?.hasError('max')) && !age?.hasError('required')">
+        Age must be <strong>between 0 and 125 (included)</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Sex</mat-label>
+      <mat-error *ngIf="sex?.hasError('required')">
+        Sex is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="sex?.hasError('pattern') && !sex?.hasError('required')">
+        Sex must be <strong>W</strong>, <strong>M</strong>, <strong>Other</strong> or <strong>Unknown</strong>
+      </mat-error>
+      <input matInput placeholder="M / W / Other / Unknown" formControlName="sex">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Birthday</mat-label>
+      <input type="date" matInput formControlName="birthday">
+      <mat-error *ngIf="birthday?.hasError('required')">
+        Birthday is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>DNI</mat-label>
+      <input matInput formControlName="dni" value="123456789">
+      <mat-error *ngIf="dni?.hasError('required')">
+        DNI is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="(dni?.hasError('minlength') || dni?.hasError('maxlength')) && !dni?.hasError('required')">
+        DNI must have <strong>9 characters</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="colorField" appearance="fill">
+      <mat-label>Fav Colour</mat-label>
+      <input type="color" matInput formControlName="favColour">
+      <mat-error *ngIf="favColour?.hasError('required')">
+        Favourite colour is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="noteField" appearance="fill">
+      <mat-label>Notes</mat-label>
+      <textarea matInput value="defaultName" placeholder="Ex. Very active" formControlName="notes"></textarea>
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="primary" [disabled]="!newPerson.valid">{{buttonText}}</button>
+  </form>
+</mat-card>

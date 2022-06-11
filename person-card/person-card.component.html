@@ -1,0 +1,20 @@
+<mat-card class="PCard">
+    <div class="topColourBand" [ngStyle]="{background: myPerson.getFavouriteColor()}"></div>
+    <mat-card-header>
+        <mat-card-title>{{myPerson.getSurname()}}, {{myPerson.getName()}}</mat-card-title>
+        <mat-card-subtitle>Age {{myPerson.getDate()}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <li><strong>Sex:</strong> {{myPerson.getSex()}}</li>
+        <li><strong>Birthday:</strong> {{myPerson.getBirthday()}}</li>
+        <li><strong>DNI:</strong> {{myPerson.getDni()}}</li>
+        <p></p>
+        <p><i>"{{myPerson.getNotes()}}"</i></p>
+        <div class="buttonHolder">
+        <button mat-raised-button (click)="updatePerson()">Update Person</button>
+        <button mat-raised-button color="warn" (click)="deletePerson()">Delete Person</button>
+    </div>
+    </mat-card-content>
+    <div class="bottomColourBand" [ngStyle]="{background: myPerson.getFavouriteColor()}"></div>
+
+</mat-card>

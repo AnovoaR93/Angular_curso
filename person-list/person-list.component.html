@@ -1,0 +1,14 @@
+<mat-grid-list cols="2" rowHeight="3:2">
+    <mat-grid-tile class="personTile">
+        <my-form [operationOnSubmit]="'CREATE'" [buttonText]="'CREATE user'" [title]="'Create user'" (submitEvent)="handleFormSubmit($event)"></my-form>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let person of persons; let i=index">
+        <app-person-card [myPerson]="person" 
+        *ngIf="!personsOnUpdate[i]"
+        (deleteEvent)="deleteUser($event)"
+        (updateEvent)="loadUpdateForm($event)"
+        ></app-person-card>
+        <my-form [index]="i" [title]="'Update user'" [defaultValues]="getDefVals(i)" [operationOnSubmit]="'UPDATE'" 
+        [buttonText]="'UPDATE user'" (submitEvent)="handleFormSubmit($event)" *ngIf="personsOnUpdate[i]"></my-form>
+    </mat-grid-tile>
+</mat-grid-list>
